@@ -100,18 +100,17 @@ else:
     st.write("#### 💡 解法指引：")
     st.write("請按下標記為 🎯 的位置（順序不影響結果）：")
     
-    # 視覺化呈現解法
-    display_grid = []
+   # 視覺化呈現解法 (使用表格確保絕對對齊)
+    # 建立一個 N x N 的陣列，預設填入空點
+    res_table = np.full((N, N), "·", dtype=object)
+    
+    # 根據解法矩陣填入目標
     for r in range(N):
-        row_str = ""
         for c in range(N):
             if solution[r, c] == 1:
-                row_str += " [ 🎯 ] "
-            else:
-                row_str += " [　] "
-        display_grid.append(row_str)
+                res_table[r, c] = "🎯"
     
-    st.code("\n".join(display_grid))
+    st.table(res_table)
 
 # 重置按鈕
 if st.button("清空所有輸入"):
